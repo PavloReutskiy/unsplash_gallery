@@ -1,0 +1,137 @@
+@import '../../../styles/utils/vars';
+@import '../../../styles/utils/mixins';
+
+.header {
+  &__top {
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    height: 62px;
+    padding: 11px 20px;
+
+    @include onTablet {
+      padding: 8px 12px;
+    }
+  }
+
+  &__action-links {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    @include onTablet {
+      display: none;
+    }
+  }
+
+  &__auth {
+    display: inline-block;
+    padding: 0 11px;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: $font-color;
+    cursor: pointer;
+  }
+
+  &__submit {
+    display: inline-block;
+    padding: 0 11px;
+    height: 32px;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: $white-color;
+    color: $font-color;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color .1s ease-in-out, border-color .1s ease-in-out;
+
+    &:hover {
+      color: #111;
+      border-color: $font-color;
+    }
+  }
+
+  &__search {
+    flex-grow: 1;
+    margin: 0 16px;
+  }
+
+  &__search-field {
+    background-color: $search-background-color;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    transition: border-color .1s ease-in-out;
+
+    &::placeholder {
+      color: $font-color;
+    }
+
+    &:hover {
+      border-color: $border-color;
+      box-shadow: none;
+    }
+
+    &:focus {
+      background-color: $white-color;
+      border-color: $border-color;
+      box-shadow: none;
+    }
+  }
+
+  &__search-icon {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    color: $font-color;
+    height: 2.5em;
+    width: 2.5em;
+    pointer-events: none;
+    z-index: 4;
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+
+      @include onTablet {
+        display: none;
+      }
+    }
+  }
+}
+
+.burger-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background-color: $white-color;
+  border: none;
+
+  cursor: pointer;
+}
+
+.reset {
+  right: 35px;
+  pointer-events: all;
+
+  @include onTablet {
+    right: 10px;
+  }
+}
+

@@ -1,27 +1,39 @@
 import React from 'react';
 import './App.scss';
-
-interface Props {
-  onClick: () => void;
-}
-
-export const Provider: React.FC<Props> = React.memo(
-  ({ onClick, children }) => (
-    <button
-      type="button"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  ),
-);
+import 'bulma/css/bulma.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+import { Navigate, Route, Routes } from 'react-router';
+import { Home } from './components/Home';
+import { Collection } from './components/Collection';
+import { Photo } from './components/Photo';
+import { Search } from './components/Search';
+import { NotFound } from './components/NotFound';
+import { Header } from './components/Header';
 
 export const App: React.FC = () => {
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>
-        <TodoList />
-      </Provider>
+    <div className="App">
+      <Header />
+      
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/t/:collectionName" element={<Collection />} />
+          <Route path="/photos/:id" element={<Photo />} />
+          <Route path="/s/photos/:query" element={<Search />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
+        {/* <section className="banner">
+        </section>
+
+        <section className="gallery">
+        </section>
+
+        <nav className="pagination">
+        </nav> */}
+      </main>
     </div>
   );
 };
