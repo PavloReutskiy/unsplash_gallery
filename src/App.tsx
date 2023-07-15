@@ -3,10 +3,8 @@ import './App.scss';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { Navigate, Route, Routes } from 'react-router';
-import { Home } from './components/Home';
-import { Collection } from './components/Collection';
+import { MainPage } from './components/MainPage';
 import { Photo } from './components/Photo';
-import { Search } from './components/Search';
 import { NotFound } from './components/NotFound';
 import { Header } from './components/Header';
 
@@ -17,11 +15,11 @@ export const App: React.FC = () => {
       
       <main className="main">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
-          <Route path="/t/:collectionName" element={<Collection />} />
+          <Route path="/t/:collectionName" element={<MainPage />} />
           <Route path="/photos/:id" element={<Photo />} />
-          <Route path="/s/photos/:query" element={<Search />} />
+          <Route path="/s/photos/:query" element={<MainPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

@@ -2,7 +2,6 @@
 @import '../../../styles/utils/mixins';
 
 .nav {
-  position: sticky;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,7 +24,13 @@
     justify-content: space-between;
     align-items: center;
     gap: 24px;
-    overflow: hidden;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__link {
@@ -56,4 +61,35 @@
   100% {
     box-shadow: inset 0 -2px #111;
   }
+}
+
+.nav__list-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  border: none;
+  color: $font-color;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.scroll-button-left {
+  left: 0;
+  z-index: 1;
+}
+
+.scroll-button-right {
+  right: 0;
 }

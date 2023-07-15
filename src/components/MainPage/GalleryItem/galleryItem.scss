@@ -1,0 +1,64 @@
+@import '../../../styles/utils/vars';
+@import '../../../styles/utils/mixins';
+
+.gallery__item-container {
+  position: relative;
+}
+
+.gallery__item-link {
+  display: block;
+}
+
+.overlay {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.gallery__item-container:hover .overlay {
+  opacity: 1;
+  cursor: zoom-in;
+}
+
+.gallery__button {
+  margin-top: 20px;
+  pointer-events: auto;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  transition: color .1s ease-in-out, background-color .1s ease-in-out;
+
+  &:hover {
+    color: #111;
+    background-color: $white-color;
+    cursor: pointer;
+  }
+
+  &--1 {
+    margin-right: 10px;
+  }
+
+  &--2 {
+    margin-right: 20px;
+  }
+}
+
+.masonry-item {
+  display: block;
+  margin-bottom: 20px;
+}
