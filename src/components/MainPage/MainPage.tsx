@@ -3,7 +3,7 @@ import "./mainPage.scss";
 import { Banner } from "./Banner";
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { getPhotos, getCollection } from "../../api/photos";
+import { getPhotos, getCollection, searchPhotos } from "../../api/photos";
 import { Photo } from "../../types/Photo";
 import Masonry from 'react-masonry-css';
 import { GalleryItem } from "./GalleryItem";
@@ -11,7 +11,7 @@ import { Loader } from "../Loader";
 import { PhotoModal } from '../PhotoModal';
 
 export const MainPage: React.FC = () => {
-  const { collectionName, id: urlId } = useParams();
+  const { collectionName, id: urlId, query } = useParams();
   const location = useLocation();
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,8 +42,14 @@ export const MainPage: React.FC = () => {
           setPhotos(prevPhotos => [...prevPhotos, ...response]);
         });
       }
+    } else if (location.pathname.includes('/s/photos/')) {
+      if (query) {
+        searchPhotos(query).then(response => {
+          setPhotos(prevPhotos => [...prevPhotos, ...response.results]);
+        });
+      }
     }
-  }, [location, collectionName, currentPage]);
+  }, [location, collectionName, currentPage, query]);
 
   useEffect(() => {
     setPhotos([]);

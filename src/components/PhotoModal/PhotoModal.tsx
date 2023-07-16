@@ -56,7 +56,14 @@ export const PhotoModal: React.FC<Props> = ({ photoId, onClick, previousPath }) 
 
         <div className="tags">
           {photo?.tags.map(tag => (
-            <button key={tag.title} className="tag">
+            <button 
+              key={tag.title} 
+              className="tag"
+              onClick={() => {
+                onClick(null);
+                navigate(`/s/photos/${tag.title}`)
+              }}
+            >
                 {tag.title.charAt(0).toUpperCase() + tag.title.slice(1)}
             </button>
           ))}

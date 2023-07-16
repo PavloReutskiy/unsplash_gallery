@@ -1,12 +1,15 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { getRandomPhoto } from "../../../api/photos";
 import "./banner.scss";
+import { useNavigate } from "react-router-dom";
 
 export const Banner: React.FC = () => {
   const [query, setQuery] = useState("");
   const [isResetButtonActive, setIsResetButtonActive] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState<string>("");
   const [photoAuthor, setPhotoAuthor] = useState<string>("");
+
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   const fetchRandomPhoto = async () => {
@@ -48,6 +51,13 @@ export const Banner: React.FC = () => {
     setIsResetButtonActive(false);
   };
 
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate(`/s/photos/${query}`)
+    setQuery('');
+    setIsResetButtonActive(false);
+  }
+
   return (
     <section
       className="banner"
@@ -62,31 +72,33 @@ export const Banner: React.FC = () => {
           </p>
 
           <div className="banner__search control has-icons-left has-icons-right">
-            <input
-              type="text"
-              className="input banner__search-field"
-              placeholder="Search high-resolution images"
-              value={query}
-              onChange={handleQueryChange}
-            />
-            <span className="banner__search-icon banner__search-icon--left">
-              <i className="fas fa-magnifying-glass" />
-            </span>
+            <form onSubmit={handleFormSubmit}>
+              <input
+                type="text"
+                className="input banner__search-field"
+                placeholder="Search high-resolution images"
+                value={query}
+                onChange={handleQueryChange}
+              />
+              <span className="banner__search-icon banner__search-icon--left">
+                <i className="fas fa-magnifying-glass" />
+              </span>
 
-            <span className="icon banner__reset">
-              {isResetButtonActive && (
-                <button
-                  type="button"
-                  className="delete"
-                  aria-label="Clear search"
-                  onClick={handleReset}
-                />
-              )}
-            </span>
+              <span className="icon banner__reset">
+                {isResetButtonActive && (
+                  <button
+                    type="button"
+                    className="delete"
+                    aria-label="Clear search"
+                    onClick={handleReset}
+                  />
+                )}
+              </span>
 
-            <span className="banner__search-icon banner__search-icon--right">
-              <i className="fa-sharp fa-solid fa-expand"></i>
-            </span>
+              <span className="banner__search-icon banner__search-icon--right">
+                <i className="fa-sharp fa-solid fa-expand"></i>
+              </span>
+            </form>
           </div>
 
           <div className="banner__trend-container">

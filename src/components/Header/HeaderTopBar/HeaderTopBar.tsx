@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
 import BurgerMenu from '../../../img/icons/burger.svg';
 import Logo from '../../../img/logo-black.svg';
@@ -8,7 +8,8 @@ import './headerTopBar.scss';
 export const HeaderTopBar: React.FC = () => {
   const [query, setQuery] = useState('');
   const [isResetButtonActive, setIsResetButtonActive] = useState(false);
-  const isTabletOrDesktop = useMediaQuery({ query: '(max-width: 767px)' })
+  const isTabletOrDesktop = useMediaQuery({ query: '(max-width: 767px)' });
+  const navigate = useNavigate();
 
   const handleQueryChange = (inputEvent: ChangeEvent<HTMLInputElement>) => {
     const { value } = inputEvent.target;
@@ -21,6 +22,14 @@ export const HeaderTopBar: React.FC = () => {
     setQuery('');
     setIsResetButtonActive(false);
   };
+
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate(`/s/photos/${query}`);
+    setQuery('');
+    setIsResetButtonActive(false);
+  };
+
   return (
     <div className="header__top">
         <Link className='header__logo' to="/">
@@ -28,31 +37,33 @@ export const HeaderTopBar: React.FC = () => {
         </Link>
 
         <div className="header__search control has-icons-left has-icons-right">
-          <input 
-            type="text" 
-            className="input header__search-field"
-            placeholder={isTabletOrDesktop ? "Search image" : "Search high-resolution images"}
-            value={query}
-            onChange={handleQueryChange}
-          />
-          <span className="header__search-icon header__search-icon--left">
-            <i className="fas fa-magnifying-glass" />
-          </span>
+          <form onSubmit={handleFormSubmit}>
+            <input 
+              type="text" 
+              className="input header__search-field"
+              placeholder={isTabletOrDesktop ? "Search image" : "Search high-resolution images"}
+              value={query}
+              onChange={handleQueryChange}
+            />
+            <span className="header__search-icon header__search-icon--left">
+              <i className="fas fa-magnifying-glass" />
+            </span>
 
-          <span className="icon reset">
-            {isResetButtonActive && (
-              <button
-                type="button"
-                className="delete"
-                aria-label="Clear search"
-                onClick={handleReset}
-              />
-            )}
-          </span>
+            <span className="icon reset">
+              {isResetButtonActive && (
+                <button
+                  type="button"
+                  className="delete"
+                  aria-label="Clear search"
+                  onClick={handleReset}
+                />
+              )}
+            </span>
 
-          <span className="header__search-icon header__search-icon--right">
-            <i className="fa-sharp fa-solid fa-expand"></i>
-          </span>
+            <span className="header__search-icon header__search-icon--right">
+              <i className="fa-sharp fa-solid fa-expand"></i>
+            </span>
+          </form>
         </div>
 
         <div className="header__action-links">
