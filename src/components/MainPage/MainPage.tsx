@@ -8,22 +8,30 @@ import { Photo } from "../../types/Photo";
 import Masonry from 'react-masonry-css';
 import { GalleryItem } from "./GalleryItem";
 import { Loader } from "../Loader";
+import { PhotoModal } from '../PhotoModal';
 
 export const MainPage: React.FC = () => {
-  const { collectionName } = useParams();
+  const { collectionName, id: urlId } = useParams();
   const location = useLocation();
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [columns, setColumns] = useState(3);
-  // const [isLoading, setIsLoading] = useState(false) 
+  const [activePhotoId, setActivePhotoId] = useState<string | null>(urlId || null);
+  const [previousPath, setPreviousPath] = useState('');
+
+  const handlePhotoClick = (id: string | null) => {
+    if (id) {
+      setPreviousPath(location.pathname);
+    }
+    setActivePhotoId(id);
+  }
+  
 
   useEffect(() => {
-    // setIsLoading(true)
     if (location.pathname === '/') {
       getPhotos(currentPage).then(response => {
         console.log(response);
         
-        // setIsLoading(false)
         if (response.length > 0) {
           setPhotos(prevPhotos => [...prevPhotos, ...response]);
         } else {
@@ -33,7 +41,6 @@ export const MainPage: React.FC = () => {
     } else if (location.pathname.includes('/t/')) {
       if (collectionName) {
         getCollection(collectionName, currentPage).then(response => {
-          // setIsLoading(false);
           setPhotos(prevPhotos => [...prevPhotos, ...response]);
         });
       }
@@ -102,12 +109,21 @@ export const MainPage: React.FC = () => {
               {photos.map(photo => (
                 <GalleryItem 
                   key={photo.id} 
-                  photo={photo} 
+                  photo={photo}
+                  onPhotoClick={handlePhotoClick}
                 />
               ))}
             </Masonry>
           </InfiniteScroll>
         </section>
+
+        {activePhotoId && 
+          <PhotoModal 
+            photoId={activePhotoId} 
+            onClick={handlePhotoClick}
+            previousPath={previousPath}
+          />
+        }
       </div>
     </>
   )

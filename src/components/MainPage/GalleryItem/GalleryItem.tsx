@@ -4,13 +4,15 @@ import './galleryItem.scss';
 
 type Props = {
   photo: Photo;
+  onPhotoClick: (id: string | null) => void;
 }
 
-export const GalleryItem: React.FC<Props> = ({ photo }) => {
+export const GalleryItem: React.FC<Props> = ({ photo, onPhotoClick }) => {
   return (
     <div className="gallery__item-container">
       <Link 
         to={`/photos/${photo.id}`}
+        onClick={() => onPhotoClick(photo.id)}
         className="gallery__item-link"
       >
         <img 

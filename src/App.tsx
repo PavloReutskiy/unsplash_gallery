@@ -4,7 +4,7 @@ import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { Navigate, Route, Routes } from 'react-router';
 import { MainPage } from './components/MainPage';
-import { Photo } from './components/Photo';
+import { PhotoModal } from './components/PhotoModal';
 import { NotFound } from './components/NotFound';
 import { Header } from './components/Header';
 
@@ -18,7 +18,7 @@ export const App: React.FC = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/t/:collectionName" element={<MainPage />} />
-          <Route path="/photos/:id" element={<Photo />} />
+          <Route path="/photos/:id" element={<MainPage />} />
           <Route path="/s/photos/:query" element={<MainPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

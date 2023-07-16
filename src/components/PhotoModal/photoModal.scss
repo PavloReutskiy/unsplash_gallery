@@ -1,0 +1,181 @@
+@import '../../styles/utils/vars';
+@import '../../styles/utils/mixins';
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  margin: 0;
+  position: relative;
+  top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+  width: 90%;
+  height: 85%;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+
+  @include onTablet {
+    overflow: auto;
+    width: 100%;
+    top: 80px;
+    border-radius: 0;
+  }
+}
+
+.modal-next, .modal-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: 1px solid transparent;
+  color: #fff;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal-next {
+  right: 1%;
+
+  @media (max-width: 1060px) {
+    right: 0%;
+  }
+
+  @include onTablet {
+    display: none;
+  }
+}
+
+.modal-prev {
+  left: 1%;
+
+  @media (max-width: 1060px) {
+    left: 0%;
+  }
+
+  @include onTablet {
+    display: none;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 13%;
+  left: 1%;
+  min-width: 40px;
+  min-height: 40px;
+
+  @media (max-width: 1060px) {
+    left: 0%;
+  }
+
+  @include onTablet {
+    top: 120px;
+    left: 5px;
+  }
+}
+
+.modal-top {
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.author-container {
+  display: flex;
+  margin-left: 10px;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.author-photo {
+  display: flex;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 100%;
+}
+
+.author {
+  color: #111;
+  font-weight: 500;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.action-buttons {
+  display: flex;
+}
+
+.action-button {
+  margin-top: 10px;
+  pointer-events: auto;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  transition: color .1s ease-in-out, background-color .1s ease-in-out;
+  margin-right: 10px;
+
+  &:hover {
+    color: #111;
+    background-color: $white-color;
+    cursor: pointer;
+  }
+}
+
+.modal-photo {
+  flex-grow: 1;
+  object-fit: contain;
+
+  @include onTablet {
+    width: 100%;
+  }
+}
+
+.tags {
+  display: flex;
+  padding: 20px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tag {
+  background-color: #eee;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 26px;
+  padding: 0 8px;
+  color: $font-color;
+  border: 1px solid $border-color;
+  cursor: pointer;
+  transition: color .1s ease-in-out, background-color .1s ease-in-out;
+
+  &:hover {
+    background-color: #e1e1e1;
+    color: #111;
+  }
+}
