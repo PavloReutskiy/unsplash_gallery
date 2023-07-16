@@ -14,7 +14,7 @@ export const GalleryItem: React.FC<Props> = ({ photo }) => {
         className="gallery__item-link"
       >
         <img 
-          src={photo.urls.raw} 
+          src={photo.urls.small} 
           alt={photo.description}
           className="masonry-item"
         />
