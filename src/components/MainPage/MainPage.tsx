@@ -26,11 +26,9 @@ export const MainPage: React.FC = () => {
     setActivePhotoId(id);
   }
   
-
   useEffect(() => {
     if (location.pathname === '/') {
       getPhotos(currentPage).then(response => {
-        console.log(response);
         
         if (response.length > 0) {
           setPhotos(prevPhotos => [...prevPhotos, ...response]);

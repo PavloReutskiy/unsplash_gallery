@@ -1,5 +1,9 @@
 import './photoModal.scss';
 import { useNavigate } from 'react-router-dom';
+import { getPhotoById, getAuthor } from '../../api/photos';
+import { useEffect, useState } from 'react';
+import { Photo } from '../../types/Photo';
+import { Author } from '../../types/Author';
 
 type Props = {
   photoId: string;
@@ -7,41 +11,26 @@ type Props = {
   previousPath: string;
 }
 
-const tags = [
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-  { title: 'man' },
-  { title: 'drinking' },
-  { title: 'coffee' },
-];
-
 export const PhotoModal: React.FC<Props> = ({ photoId, onClick, previousPath }) => {
+  const [photo, setPhoto] = useState<Photo | null>(null);
+  const [author, setAuthor] = useState<Author | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (photoId) {
+      getPhotoById(photoId).then(response => {
+        setPhoto(response);
+      });
+    }
+  }, [photoId]);
+
+  useEffect(() => {
+    if (photo?.user?.username) {
+      getAuthor(photo.user.username).then(response => {
+        setAuthor(response);
+      });
+    }
+  }, [photo]);
 
   return (
     <div className="modal-container">
@@ -49,8 +38,8 @@ export const PhotoModal: React.FC<Props> = ({ photoId, onClick, previousPath }) 
 
         <div className="modal-top">
           <div className="author-container">
-            <div className="author-photo"><img src="https://via.placeholder.com/30x30" alt="Placeholder image" /></div>
-            <div className="author">Pavlo Reutskiy</div>
+            <div className="author-photo"><img src={author?.profile_image.small} alt={author?.name} /></div>
+            <div className="author">{photo?.user.name}</div>
           </div>
           <div className="action-buttons">
             <div className="action-button"><i className="fa-sharp fa-solid fa-heart"></i></div>
@@ -61,20 +50,18 @@ export const PhotoModal: React.FC<Props> = ({ photoId, onClick, previousPath }) 
 
         <img 
           className="modal-photo" 
-          src="https://via.placeholder.com/440x660" 
-          alt="Placeholder image" 
+          src={photo?.urls.small} 
+          alt={photo?.description}
         />
 
         <div className="tags">
-          {tags.map(tag => (
+          {photo?.tags.map(tag => (
             <button key={tag.title} className="tag">
                 {tag.title.charAt(0).toUpperCase() + tag.title.slice(1)}
             </button>
           ))}
         </div>
       </div>
-
-
 
       <button className="modal-next">
         <i className="fa-solid fa-chevron-right fa-xl"></i>

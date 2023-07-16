@@ -1,0 +1,45 @@
+import { Links } from "./Photo";
+
+interface Social {
+  instagram_username: string;
+  portfolio_url: string;
+  twitter_username: string;
+}
+
+interface ProfileImage {
+  small: string;
+  medium: string;
+  large: string;
+}
+
+interface Badge {
+  title: string;
+  primary: boolean;
+  slug: string;
+  link: string;
+}
+
+export interface Author {
+  id: string;
+  updated_at: string;
+  username: string;
+  name: string;
+  first_name: string;
+  last_name: string;
+  instagram_username: string;
+  twitter_username: string;
+  portfolio_url: string | null;
+  bio: string;
+  location: string;
+  total_likes: number;
+  total_photos: number;
+  total_collections: number;
+  followed_by_user: boolean;
+  followers_count: number;
+  following_count: number;
+  downloads: number;
+  social: Social;
+  profile_image: ProfileImage;
+  badge: Badge;
+  links: Links;
+}

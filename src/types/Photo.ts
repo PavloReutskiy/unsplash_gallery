@@ -27,7 +27,7 @@ interface Urls {
   thumb: string;
 }
 
-interface Links {
+export interface Links {
   self: string;
   html: string;
   download: string;
@@ -50,6 +50,10 @@ interface User {
   links: Links;
 }
 
+interface Tag {
+  title: string;
+}
+
 export interface Photo {
   id: string;
   created_at: string;
@@ -63,6 +67,7 @@ export interface Photo {
   liked_by_user: boolean;
   description: string;
   exif: Exif;
+  tags: Tag[];
   location: Location;
   current_user_collections: any[]; 
   urls: Urls;

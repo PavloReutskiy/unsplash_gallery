@@ -1,8 +1,17 @@
+import { Author } from "../types/Author";
 import { Photo } from "../types/Photo";
 import { client } from "../utils/fetchClient";
 
 export const getRandomPhoto = () => {
   return client.get<Photo>('/photos/random')
+}
+
+export const getPhotoById = (id: string) => {
+  return client.get<Photo>(`/photos/${id}`)
+}
+
+export const getAuthor = (name: string) => {
+  return client.get<Author>(`/users/${name}`)
 }
 
 export const getPhotos = (page: number = 1, perPage: number = 10) => {
