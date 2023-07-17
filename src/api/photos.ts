@@ -19,8 +19,8 @@ export const getPhotos = (page: number = 1, perPage: number = 10) => {
   return client.get<Photo[]>(`/photos?page=${page}&per_page=${perPage}`)
 }
 
-export const searchPhotos = (query: string) => {
-  return client.get<SearchResults>(`/search/photos?query=${query}`)
+export const searchPhotos = (query: string, page: number = 1) => {
+  return client.get<SearchResults>(`/search/photos?query=${query}&page=${page}`)
 }
 
 export const getCollection = (slug: string, page: number = 1, perPage: number = 10) => {

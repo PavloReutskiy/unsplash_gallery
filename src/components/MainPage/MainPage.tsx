@@ -51,10 +51,10 @@ export const MainPage: React.FC = () => {
     if (!location.pathname.includes("/s/photos/")) return;
     if (!query) return;
 
-    searchPhotos(query).then((response) => {
+    searchPhotos(query, currentPage).then((response) => {
       setPhotos((prevPhotos) => [...prevPhotos, ...response.results]);
     });
-  }, [location, query]);
+  }, [location, query, currentPage]);
 
   useEffect(() => {
     setPhotos([]);
