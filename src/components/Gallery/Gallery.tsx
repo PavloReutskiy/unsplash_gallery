@@ -28,7 +28,8 @@ export const Gallery: React.FC<Props> = ({
       <Masonry
         breakpointCols={{
           default: columns,
-          1200: 3,
+          1200: 4,
+          1100: 3,
           991: 2,
           767: 1,
         }}

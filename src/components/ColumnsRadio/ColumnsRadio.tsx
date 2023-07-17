@@ -22,11 +22,11 @@ export const ColumnsRadio: React.FC<Props> = ({ onChangeColumns, columns }) => {
         <input
           type="radio"
           className="radio__input"
-          value="4"
-          checked={columns === 4}
+          value="5"
+          checked={columns === 5}
           onChange={onChangeColumns}
         />
-        4 columns
+        5 columns
       </label>
     </div>
   );
