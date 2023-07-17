@@ -1,9 +1,9 @@
+import './headerTopBar.scss';
+import { ChangeEvent, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
-import BurgerMenu from '../../../img/icons/burger.svg';
-import Logo from '../../../img/logo-black.svg';
-import { ChangeEvent, useState } from 'react';
-import './headerTopBar.scss';
+import BurgerMenu from '../../img/icons/burger.svg';
+import Logo from '../../img/logo-black.svg';
 
 export const HeaderTopBar: React.FC = () => {
   const [query, setQuery] = useState('');

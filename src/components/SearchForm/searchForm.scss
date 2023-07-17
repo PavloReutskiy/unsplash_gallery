@@ -1,0 +1,49 @@
+@import '../../styles/utils/vars';
+@import '../../styles/utils/mixins';
+
+.banner {
+  &__search-field {
+    height: 54px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: border-color .1s ease-in-out;
+  
+    &::placeholder {
+      color: $font-color;
+    }
+  
+    &:hover {
+      border-color: $border-color;
+    }
+  
+    &:focus {
+      border-color: $border-color;
+    }
+  }
+  
+  &__search-icon {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    top: 7px;
+    color: $font-color;
+    height: 2.5em;
+    width: 2.5em;
+    pointer-events: none;
+  
+    &--left {
+      left: 0;
+    }
+  
+    &--right {
+      right: 0;
+    }
+  }
+  
+  &__reset {
+    margin-top: 7px;
+    right: 35px;
+    pointer-events: all;
+  }
+}

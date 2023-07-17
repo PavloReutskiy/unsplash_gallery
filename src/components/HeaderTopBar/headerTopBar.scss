@@ -1,5 +1,5 @@
-@import '../../../styles/utils/vars';
-@import '../../../styles/utils/mixins';
+@import '../../styles/utils/vars';
+@import '../../styles/utils/mixins';
 
 .header {
   &__top {
@@ -55,8 +55,9 @@
     transition: color .1s ease-in-out, border-color .1s ease-in-out;
 
     &:hover {
-      color: #111;
+      color: $font-accent-color;
       border-color: $font-color;
+      cursor: pointer;
     }
   }
 

@@ -1,0 +1,32 @@
+@import '../../styles/utils/vars';
+@import '../../styles/utils/mixins';
+
+.banner {
+  &__trend {
+    color: $white-color;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+    list-style: none;
+    color: rgba($color: $white-color, $alpha: 0.8);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  
+  &__item {
+    cursor: pointer;
+    transition: color .1s ease-in-out, text-decoration .1s ease-in-out;
+  
+    &:hover {
+      color: $white-color;
+      text-decoration: underline;
+    }
+  }
+}

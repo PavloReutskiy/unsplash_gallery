@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
-import { Photo } from "../../../types/Photo";
-import './galleryItem.scss';
+import { Photo } from "../../types/Photo";
+import "./galleryItem.scss";
 
 type Props = {
   photo: Photo;
   onPhotoClick: (id: string | null) => void;
-}
+};
 
 export const GalleryItem: React.FC<Props> = ({ photo, onPhotoClick }) => {
   return (
     <div className="gallery__item-container">
-      <Link 
+      <Link
         to={`/photos/${photo.id}`}
         onClick={() => onPhotoClick(photo.id)}
         className="gallery__item-link"
       >
-        <img 
-          src={photo.urls.small} 
+        <img
+          src={photo.urls.small}
           alt={photo.description}
           className="masonry-item"
         />
@@ -31,4 +31,4 @@ export const GalleryItem: React.FC<Props> = ({ photo, onPhotoClick }) => {
       </Link>
     </div>
   );
-}
+};

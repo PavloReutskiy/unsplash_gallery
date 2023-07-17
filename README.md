@@ -1,9 +1,20 @@
-# React TypeScript Starter Pack
+# Photo Gallery
 
-To use this template click `Use this template`
+[Demo link](https://pavloreutskiy.github.io/unsplash_gallery/)
 
-### Available Scripts
+Source: [Unsplash](https://unsplash.com/)
 
-`Deploy` - available to deploy your application to gh-pages
+### Installation and Setup
 
-`SCSS Preprocessor` - available to write your styles with modern style language
+1. Clone this repository 
+    ```
+    git clone <repository-url>
+    ```
+2. Install dependencies
+    ```
+    npm install
+    ```
+3. Start the development server
+    ```
+    npm start
+    ```
